@@ -30,3 +30,19 @@ spec:
             configMapKeyRef:
               name: dados
               key: DB_HOST 
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: senhas
+              key: DB_USER 
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: senhas
+              key: DB_PASSWORD 
+        livenessProbe: 
+          httpGet: 
+            path: /paciente
+            port: 3000
+          initialDelaySeconds: 15
+          periodSeconds: 3
